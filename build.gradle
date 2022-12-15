@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'org.liquibase.gradle' version '2.0.4'
 }
 
 group 'ru.clevertec'
@@ -18,11 +19,32 @@ dependencies {
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    // jdbc
+    implementation 'org.postgresql:postgresql:42.3.6'
+
+    // liquibase
+    liquibaseRuntime 'org.postgresql:postgresql:42.3.6'
+    liquibaseRuntime 'org.liquibase:liquibase-core:4.14.0'
 }
 
 test {
     useJUnitPlatform()
 }
+
+task('deploy') {
+    liquibase {
+        activities {
+            main {
+                changeLogFile "src/main/resources/database/changelog/changelog-master.xml"
+                url "jdbc:postgresql://localhost:5432/receipt_data"
+                username "postgres"
+                password "root"
+            }
+        }
+    }
+}
+compileJava.dependsOn(update).dependsOn(deploy)
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
