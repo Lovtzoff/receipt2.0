@@ -17,4 +17,14 @@ public class Constants {
 
     public static final int DEFAULT_PAGE = 0;
     public static final int DEFAULT_SIZE_PAGE = 20;
+
+    public static final int COUNT_DEFAULT = 1;
+    public static final int SCALE_DEFAULT = 3;
+    public static final String DATE_PATTERN = "dd/MM/yyyy";
+    public static final String TIME_PATTERN = "HH:mm:ss";
+
+    public static final String PRINT_DIR = "print";
+    public static final String RECEIPT_FILE = PRINT_DIR + "/receipt.print";
+
+    public static final String STRING_SEPARATOR = " ";
 }
