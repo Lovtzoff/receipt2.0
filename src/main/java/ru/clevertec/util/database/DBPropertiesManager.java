@@ -15,7 +15,7 @@ public class DBPropertiesManager {
 
     private static final Properties properties;
 
-    private static final String PROPERTIES_FILE = "database.properties";
+    private static final String PROPERTIES_FILE = "database/database.properties";
     private static final String URL = "database.url";
     private static final String USER = "database.user";
     private static final String PASSWORD = "database.password";

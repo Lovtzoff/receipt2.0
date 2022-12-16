@@ -14,7 +14,7 @@ import ru.clevertec.model.parent.BaseModel;
  */
 @Data
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class DiscountCard extends BaseModel {
 
     /**

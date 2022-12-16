@@ -14,4 +14,7 @@ public class Constants {
     public static final int ID_CASHIER_DEFAULT = 124;
 
     public static final String ARG_SEPARATOR = "-";
+
+    public static final int DEFAULT_PAGE = 0;
+    public static final int DEFAULT_SIZE_PAGE = 20;
 }

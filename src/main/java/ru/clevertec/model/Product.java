@@ -16,7 +16,7 @@ import ru.clevertec.model.parent.BaseModel;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class Product extends BaseModel {
 
     /**

@@ -9,7 +9,7 @@ import ru.clevertec.model.parent.BaseModel;
  * @author Ловцов Алексей
  * @see BaseModel
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 public class Cashier extends BaseModel {
 
     /**
