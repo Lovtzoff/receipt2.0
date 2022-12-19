@@ -1,14 +1,21 @@
 package ru.clevertec.service.impl;
 
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.wagu.Block;
+import com.wagu.Board;
+import com.wagu.Table;
 import ru.clevertec.dao.impl.DiscountCardDaoImpl;
 import ru.clevertec.dao.impl.ProductDaoImpl;
 import ru.clevertec.model.*;
 import ru.clevertec.service.ReceiptService;
 import ru.clevertec.util.NumberUtils;
 import ru.clevertec.util.RoundingUtils;
-import ru.clevertec.util.wagu.Block;
-import ru.clevertec.util.wagu.Board;
-import ru.clevertec.util.wagu.Table;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -76,6 +83,17 @@ public class ReceiptServiceImpl implements ReceiptService {
         try {
             Files.createDirectories(Paths.get(PRINT_DIR));
             Files.write(Paths.get(RECEIPT_FILE), print.getBytes());
+
+            PdfDocument pdfDocument = new PdfDocument(new PdfWriter(RECEIPT_PDF));
+            Document document = new Document(pdfDocument);
+            PdfFont pdfFont = PdfFontFactory.createFont(FONT_COURIER, "Cp1251");
+            Paragraph paragraph = new Paragraph().setFont(pdfFont);
+
+            paragraph.add(print.replace("\u0020", "\u00A0"));
+            document.setTextAlignment(TextAlignment.LEFT);
+            document.setFontSize((float) 7.0);
+            document.add(paragraph);
+            document.close();
         } catch (IOException ex) {
             System.out.println("Error: " + ex.getMessage());
         }

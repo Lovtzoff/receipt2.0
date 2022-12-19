@@ -25,6 +25,9 @@ public class Constants {
 
     public static final String PRINT_DIR = "print";
     public static final String RECEIPT_FILE = PRINT_DIR + "/receipt.print";
+    public static final String RECEIPT_PDF = PRINT_DIR + "/receipt.pdf";
 
     public static final String STRING_SEPARATOR = " ";
+
+    public static final String FONT_COURIER = "font/Courier10 Cyr BT.ttf";
 }
