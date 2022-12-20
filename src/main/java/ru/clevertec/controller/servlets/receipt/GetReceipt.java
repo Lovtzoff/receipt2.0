@@ -51,6 +51,7 @@ public class GetReceipt extends HttpServlet {
             String json = new Gson().toJson("Message: " + ex.getMessage());
 
             try (PrintWriter writer = resp.getWriter()) {
+                resp.setContentType("application/json");
                 writer.write(json);
             }
         }

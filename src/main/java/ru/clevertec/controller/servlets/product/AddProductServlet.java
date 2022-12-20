@@ -36,6 +36,7 @@ public class AddProductServlet extends HttpServlet {
         String json = new Gson().toJson(product);
         try (PrintWriter writer = resp.getWriter()) {
             writer.write(json);
+            resp.setContentType("application/json");
             resp.setStatus(201);
         }
     }

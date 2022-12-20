@@ -7,6 +7,8 @@ import ru.clevertec.model.DiscountCard;
 import ru.clevertec.service.DiscountCardService;
 import ru.clevertec.service.impl.DiscountCardServiceImpl;
 
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +36,7 @@ public class GetCardServlet extends HttpServlet {
         String json = new Gson().toJson(discountCard);
         try (PrintWriter writer = resp.getWriter()) {
             writer.write(json);
+            resp.setContentType("application/json");
             resp.setStatus(200);
         }
     }

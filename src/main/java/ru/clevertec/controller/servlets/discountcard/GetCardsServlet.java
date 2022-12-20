@@ -36,6 +36,7 @@ public class GetCardsServlet extends HttpServlet {
         String json = new Gson().toJson(discountCards);
         try (PrintWriter writer = resp.getWriter()) {
             writer.write(json);
+            resp.setContentType("application/json");
             resp.setStatus(200);
         }
     }
