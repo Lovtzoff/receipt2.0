@@ -72,37 +72,26 @@ class ProductServiceTest {
     }
 
     /**
-     * Тест добавления продукта.
+     * Тест добавления, обновления и удаления продукта.
      */
     @Test
-    @Disabled
-    void saveTest() {
+    void testSaveUpdateRemove() {
+        // test save
         Product product = new Product();
         product.setName("Вагонка СЛ (Осина) СОРТ \"АВ\" 16х94(85)х2000мм (8шт.)");
         product.setPrice(26.84);
         productService.save(product);
-        System.out.println(product);
-    }
+        int productId = product.getId();
+        Assertions.assertEquals(product, productService.findOneById(productId));
 
-    /**
-     * Тест обновления продукта.
-     */
-    @Test
-    @Disabled
-    void updateTest() {
-        Product product = new Product();
+        // test update
         product.setName("Брусок профилированный обрезной сухой береза 15х40х2000 мм");
         product.setPrice(1.94);
-        productService.update(product, 32);
-        System.out.println(product);
-    }
+        productService.update(product, productId);
+        Assertions.assertEquals(product, productService.findOneById(productId));
 
-    /**
-     * Тест удаления продукта.
-     */
-    @Test
-    @Disabled
-    void removeTest() {
-        productService.remove(32);
+        // test remove
+        productService.remove(productId);
+        Assertions.assertThrows(InputDataException.class, () -> productService.findOneById(productId));
     }
 }

@@ -85,35 +85,25 @@ class DiscountCardServiceTest {
     }
 
     /**
-     * Тест добавления карты.
+     * Тест добавления, обновления и удаления карты.
      */
     @Test
-    @Disabled
-    void save() {
+    void testSaveUpdateRemove() {
+        // test save
         DiscountCard discountCard = new DiscountCard();
         discountCard.setDiscount(15);
         discountCardService.save(discountCard);
-        System.out.println(discountCard);
-    }
+        int cardId = discountCard.getId();
+        Assertions.assertEquals(discountCard, discountCardService.findOneById(cardId));
 
-    /**
-     * Тест обновления карты.
-     */
-    @Test
-    @Disabled
-    void update() {
-        DiscountCard discountCard = new DiscountCard();
+        // test update
         discountCard.setDiscount(20);
-        discountCardService.update(discountCard, 32);
-        System.out.println(discountCard);
-    }
+        discountCardService.update(discountCard, cardId);
+        Assertions.assertEquals(discountCard, discountCardService.findOneById(cardId));
 
-    /**
-     * Тест удаления карты.
-     */
-    @Test
-    @Disabled
-    void remove() {
-        discountCardService.remove(32);
+        // test remove
+        discountCardService.remove(cardId);
+        Assertions.assertEquals(0, discountCardService.findOneById(cardId).getId());
+        Assertions.assertEquals(0, discountCardService.findOneById(cardId).getDiscount());
     }
 }
